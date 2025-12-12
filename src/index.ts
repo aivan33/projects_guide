@@ -40,8 +40,21 @@ program
       // Run the pipeline
       const result = await runPipeline(idea);
 
+      // Check if it's a simple response
+      if (result.isSimpleResponse) {
+        console.log('\n💬 Response:');
+        console.log(result.simpleResponse);
+        console.log();
+        return;
+      }
+
       // Write output
       const outputPath = await writeMarkdownOutput(result, options.output);
+
+      if (!outputPath) {
+        console.error('\n❌ Error: Failed to write output file\n');
+        process.exit(1);
+      }
 
       console.log('\n✅ Product plan generated successfully!');
       console.log(`📄 Output saved to: ${outputPath}\n`);

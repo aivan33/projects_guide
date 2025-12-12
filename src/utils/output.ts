@@ -5,7 +5,12 @@ import { PipelineResult } from '../pipeline/orchestrator.js';
 export async function writeMarkdownOutput(
   result: PipelineResult,
   customFilename?: string
-): Promise<string> {
+): Promise<string | null> {
+  // If it's a simple response, don't write a file
+  if (result.isSimpleResponse) {
+    return null;
+  }
+
   const { plan, timestamp } = result;
 
   // Generate filename

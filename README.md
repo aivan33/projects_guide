@@ -58,7 +58,24 @@ npm run build
 
 ## Usage
 
-### Generate a product plan
+### Web UI (Recommended)
+
+Start the web interface:
+
+```bash
+npm run web
+```
+
+Then open http://localhost:3000 in your browser. The web UI provides:
+
+- Clean chat interface similar to Claude/ChatGPT
+- Side menu with collapsible chat history
+- View all previously generated product plans
+- Easy-to-use interface for submitting ideas
+
+### CLI Usage
+
+#### Generate a product plan
 
 ```bash
 npm run dev generate "Your product idea here"
@@ -70,13 +87,13 @@ Example:
 npm run dev generate "A CLI tool that helps developers automatically generate API documentation from their code comments"
 ```
 
-### With custom output filename
+#### With custom output filename
 
 ```bash
 npm run dev generate "Your idea" -o my-product-plan.md
 ```
 
-### Test API connection
+#### Test API connection
 
 ```bash
 npm run dev test-api
@@ -88,6 +105,7 @@ npm run dev test-api
 pm_assist/
 ├── src/
 │   ├── index.ts              # CLI entry point
+│   ├── server.ts             # Web server entry point
 │   ├── llm/
 │   │   ├── client.ts         # OpenRouter client setup
 │   │   ├── expand.ts         # DeepSeek expansion
@@ -97,6 +115,10 @@ pm_assist/
 │   │   └── orchestrator.ts   # Pipeline orchestration
 │   └── utils/
 │       └── output.ts         # Markdown output formatter
+├── public/                   # Web UI frontend
+│   ├── index.html            # Main HTML
+│   ├── styles.css            # Styling
+│   └── app.js                # Frontend logic
 ├── output/                   # Generated plans saved here
 ├── .env                      # Your API key (gitignored)
 ├── .env.example              # Example environment file
@@ -125,9 +147,10 @@ All models are **100% free** through OpenRouter and accessed using the Vercel AI
 - Save past ideas to a local database
 - "Revisit" mode to iterate on previous plans
 - Export to task managers (Linear, Jira, etc.)
-- Web UI for easier input
 - Template customization
 - Team collaboration features
+- Markdown rendering in web UI
+- Edit and regenerate previous plans
 
 ## License
 
