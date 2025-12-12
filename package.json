@@ -1,0 +1,37 @@
+{
+  "name": "pm_assist",
+  "version": "1.0.0",
+  "description": "Product Assistant - Transform rough ideas into comprehensive product plans using multi-LLM pipeline",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "pm-assist": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "product",
+    "planning",
+    "llm",
+    "cli",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@ai-sdk/openai": "^2.0.85",
+    "ai": "^5.0.112",
+    "commander": "^14.0.2",
+    "dotenv": "^17.2.3",
+    "openai": "^6.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
