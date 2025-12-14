@@ -14,18 +14,38 @@ const chevronIcon = document.getElementById('chevronIcon');
 const newChatBtn = document.getElementById('newChatBtn');
 const modeSelect = document.getElementById('modeSelect');
 const llmCountSelect = document.getElementById('llmCountSelect');
+const themeToggle = document.getElementById('themeToggle');
 
 // API Base URL
 const API_BASE = window.location.origin;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    initializeTheme();
     loadChatHistory();
     setupEventListeners();
 });
 
+// Theme Management
+function initializeTheme() {
+    // Get saved theme or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
 // Event Listeners
 function setupEventListeners() {
+    // Theme toggle
+    themeToggle.addEventListener('click', toggleTheme);
+
     // Send button
     sendBtn.addEventListener('click', handleSend);
 

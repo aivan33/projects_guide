@@ -16,6 +16,24 @@
     --sidebar-bg: #f7f7f8;
     --message-user-bg: #f7f7f8;
     --message-assistant-bg: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --bg-primary: #212121;
+    --bg-secondary: #2f2f2f;
+    --bg-tertiary: #3a3a3a;
+    --text-primary: #ececec;
+    --text-secondary: #b4b4b4;
+    --border-color: #4a4a4a;
+    --accent-color: #10a37f;
+    --accent-hover: #0d8a6a;
+    --sidebar-bg: #171717;
+    --message-user-bg: #2f2f2f;
+    --message-assistant-bg: #2a2a2a;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 body {
@@ -28,6 +46,7 @@ body {
     color: var(--text-primary);
     height: 100vh;
     overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -43,7 +62,7 @@ body {
     border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .sidebar-header {
@@ -51,11 +70,51 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
 .sidebar-header h2 {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 12px;
     color: var(--text-primary);
+}
+
+.theme-toggle {
+    padding: 8px;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-tertiary);
+    border-color: var(--accent-color);
+}
+
+.theme-toggle .sun-icon {
+    display: none;
+}
+
+.theme-toggle .moon-icon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+    display: none;
 }
 
 .new-chat-btn {
@@ -249,7 +308,7 @@ body {
     border-color: var(--accent-color);
     background-color: var(--bg-secondary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
 }
 
 .mode-icon {
@@ -275,6 +334,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     line-height: 1.6;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .message.user {
